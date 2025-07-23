@@ -7,7 +7,7 @@ background-color: transparent;
 `
 export const Subtitle = styled.h2`
 color: ${(props) => props.theme.colors.text};
-font-family: 'popins', sans-serif;;
+font-family: 'popins', sans-serif;
 font-size: 2rem;
 background-color: transparent;
 `

@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
    box-sizing: border-box;
    margin: 0;
    padding: 0;
-   font-family: 'Mogra', system-ui;
+   font-family: 'popins', sans-serif;
    font-weight: 100;
    font-style: normal;
  }
@@ -15,6 +15,7 @@ import { createGlobalStyle } from "styled-components";
  }
 `;
 
+//    font-family: 'Mogra', system-ui;
  
 
 

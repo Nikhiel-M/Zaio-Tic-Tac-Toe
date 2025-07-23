@@ -10,4 +10,9 @@
   background-color: ${(props) => props.theme.colors.primary};
   padding: 0 2rem;
   text-align: center;
+
+  .Title {
+     font-family: 'Mogra', system-ui;
+  }
   `
+
