@@ -1,12 +1,19 @@
-import React from 'react'
-import { CellStyle } from './GameCell.styled'
+import React, { useContext } from "react";
+import { CellStyle } from "./GameCell.styled";
+import { GameContext } from "../../contexts/GameContext";
 
-const GameCell = ({cellItem}) => {
+const GameCell = ({ cellItem, index }) => {
+  const { updateBoard } = useContext(GameContext);
   return (
-    <CellStyle>
-        {cellItem}
+    <CellStyle
+      onClick={() => {
+        console.log(cellItem, index);
+        updateBoard(index)
+      }}
+    >
+      {cellItem}
     </CellStyle>
-  )
-}
+  );
+};
 
-export default GameCell
+export default GameCell;

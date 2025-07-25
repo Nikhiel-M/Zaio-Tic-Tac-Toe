@@ -9,7 +9,7 @@ const Game = () => {
   return (
     <Container>
       <GameBoardStyle>
-        { game.board.map((item, index) => (<GameCell key={index} cellItem={item} />)) }
+        { game.board.map((item, index) => (<GameCell key={index} cellItem={item}  index={index}/>)) }
       </GameBoardStyle>
     </Container>
   )
