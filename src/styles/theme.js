@@ -13,6 +13,7 @@ export const lightTheme = {
         black: "#00000099",
         purple: "#8437f9",
         yellow: "#f9c811",
+        cream: "#837679",
         
         text: "#202124"
     },
@@ -20,6 +21,9 @@ export const lightTheme = {
         thickness: "15px",
         breadth: "70px",
         circle: "25px"
+    },
+        media: {
+        mobile: "@media (max-width: 600px)"
     }
 }
 
@@ -38,6 +42,8 @@ export const darkTheme = {
         black: "#00000099",
         purple: "#8437f9",
         yellow: "#f9c811",
+        cream: "#837679",
+
         
         text: "#F6F1EB"
     },
@@ -45,5 +51,9 @@ export const darkTheme = {
         thickness: "15px",
         breadth: "70px",
         circle: "25px"
-    }
+    },
+
+    media: {
+  mobile: "@media (max-width: 600px)"
+}
 }

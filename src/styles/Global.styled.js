@@ -10,6 +10,12 @@ import { createGlobalStyle } from "styled-components";
    font-style: normal;
  }
 
+  ${({ theme }) => theme.media.mobile} {
+    * {
+      font-size: 0.5rem;
+    }
+  }
+
  body {
   background-color: ${(props) => props.theme.colors.primary };
  }
