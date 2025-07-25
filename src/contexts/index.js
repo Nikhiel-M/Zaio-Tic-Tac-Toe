@@ -1,12 +1,15 @@
-import React from 'react'
-import { ThemeContextProvider } from './ThemeContext'
+import React from "react";
+import { ThemeContextProvider } from "./ThemeContext";
+import { GameContextProvider } from "./GameContext";
 
-const Provider = ({children}) => {
-    return(
-        <ThemeContextProvider>
+const Provider = ({ children }) => {
+  return (
+    <ThemeContextProvider>
+      <GameContextProvider>
         <div>{children}</div>
-        </ThemeContextProvider>
-    )
-}
+      </GameContextProvider>
+    </ThemeContextProvider>
+  );
+};
 
-export default Provider
+export default Provider;
