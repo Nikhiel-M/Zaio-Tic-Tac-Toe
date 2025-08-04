@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { checkForWinner } from "../utils/GameUtils";
 
 export const GameContext = createContext({});
 
@@ -24,6 +25,7 @@ export const GameContextProvider = (props) => {
             board: updatedBoard,
             turn: game.turn === "x" ? "o" : "x"  
         })
+        
     }
 
     return(
