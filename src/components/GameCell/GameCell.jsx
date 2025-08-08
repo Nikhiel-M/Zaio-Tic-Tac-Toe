@@ -1,31 +1,30 @@
 import React, { useContext } from "react";
 import { CellStyle } from "./GameCell.styled";
 import { GameContext } from "../../contexts/GameContext";
-import { checkForWinner } from "../../utils/GameUtils";
 import { ImCross } from "react-icons/im";
 import { RxCross1 } from "react-icons/rx";
 import { RiCircleLine } from "react-icons/ri";
+import { ModalContext } from "../../contexts/ModalContext";
+import RoundOverModal from "../Modal/RoundOverModal/RoundOverModal";
 
 const GameCell = ({ cellItem, index }) => {
   const { updateBoard, game } = useContext(GameContext);
+  const { handleModal } = useContext(ModalContext);
 
   const cellClickHandler = () => {
-    updateBoard(index);
-    checkForWinner(game.board);
+    updateBoard(index, () => handleModal(<RoundOverModal />));
   };
 
   if (cellItem === "x") {
     return (
       <CellStyle>
-        {" "}
-        <ImCross />{" "}
+        <ImCross />
       </CellStyle>
     );
   } else if (cellItem === "o") {
     return (
       <CellStyle>
-        {" "}
-        <RiCircleLine className="CircleIcon"/>{" "}
+        <RiCircleLine className="CircleIcon" />
       </CellStyle>
     );
   }

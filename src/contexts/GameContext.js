@@ -4,33 +4,38 @@ import { checkForWinner } from "../utils/GameUtils";
 export const GameContext = createContext({});
 
 export const GameContextProvider = (props) => {
-    const [game, setGame] = useState({
-        board:[1,2,3,4,5,6,7,8,9],
-        player1: {
-            choice: "x",
-            name: "NYX"
-        },
-                player2: {
-            choice: "o",
-            name: "Frank"
-        },
-        turn:"x"
-    })
+  const [game, setGame] = useState({
+    board: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    player1: {choice: "x", name: "NYX", },
+    player2: { choice: "o", name: "MKZ",},
+    turn: "x",
+    winner: null
+  });
 
-    const updateBoard = (index) => {
-        let updatedBoard = [...game.board];
-        updatedBoard[index] = game.turn
+  const updateBoard = (index, handleModal) => {
+    let updatedBoard = [...game.board];
+    updatedBoard[index] = game.turn;
+    const winner = checkForWinner(updatedBoard);
+    if(winner){
+        setGame({
+      ...game,
+      board: updatedBoard,
+      turn: game.turn === "x" ? "o" : "x",
+    });
+    if(handleModal) handleModal();
+    }else{
         setGame({
             ...game,
             board: updatedBoard,
-            turn: game.turn === "x" ? "o" : "x"  
+            turn:game.turn === "x" ? "o" : "x"
         })
-        
     }
+    
+  };
 
-    return(
-        <GameContext.Provider value={{game, updateBoard}}>
-            {props.children}
-        </GameContext.Provider>
-    )
-}
+  return (
+    <GameContext.Provider value={{ game, updateBoard }}>
+      {props.children}
+    </GameContext.Provider>
+  );
+};
