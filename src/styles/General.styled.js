@@ -15,13 +15,13 @@ import styled from "styled-components";
 
 
 export const Title =  styled.h1`
-color: ${(props) => props.theme.colors.primary};
-     font-family: 'Mogra', system-ui;
+color: ${(props) => props.primary ? props.theme.colors.primary : props.theme.colors.text};
+font-family: 'Mogra', system-ui;
 font-size: 3rem;
 background-color: transparent;
 `
 export const Subtitle = styled.h2`
-color: ${(props) => props.theme.colors.primary};
+color: ${(props) => props.primary ? props.theme.colors.primary :  props.theme.colors.text};
 font-family: 'popins', sans-serif;
 font-size: 2rem;
 background-color: transparent;

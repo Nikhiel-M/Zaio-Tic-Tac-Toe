@@ -20,8 +20,6 @@ import { createGlobalStyle } from "styled-components";
   background-color: ${(props) => props.theme.colors.primary };
  }
 `;
-
-//    font-family: 'Mogra', system-ui;
  
 
 

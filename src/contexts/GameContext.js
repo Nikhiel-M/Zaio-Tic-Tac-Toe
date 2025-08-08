@@ -6,35 +6,41 @@ export const GameContext = createContext({});
 export const GameContextProvider = (props) => {
   const [game, setGame] = useState({
     board: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    player1: {choice: "x", name: "NYX", },
-    player2: { choice: "o", name: "MKZ",},
+    player1: { choice: "x", name: "NYX", score: 0 },
+    player2: { choice: "o", name: "MKZ", score: 0 },
     turn: "x",
-    winner: null
+    winner: null,
   });
 
   const updateBoard = (index, handleModal) => {
     let updatedBoard = [...game.board];
     updatedBoard[index] = game.turn;
     const winner = checkForWinner(updatedBoard);
-    if(winner){
-        setGame({
-      ...game,
-      board: updatedBoard,
-      turn: game.turn === "x" ? "o" : "x",
-    });
-    if(handleModal) handleModal();
-    }else{
-        setGame({
-            ...game,
-            board: updatedBoard,
-            turn:game.turn === "x" ? "o" : "x"
-        })
+    if (winner) {
+      setGame({
+        ...game,
+        board: updatedBoard,
+        turn: game.turn === "x" ? "o" : "x",
+      });
+      if (handleModal) handleModal();
+    } else {
+      setGame({
+        ...game,
+        board: updatedBoard,
+        turn: game.turn === "x" ? "o" : "x",
+      });
     }
-    
+  };
+
+  const resetBoard = () => {
+    setGame({
+      ...game,
+      board: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    });
   };
 
   return (
-    <GameContext.Provider value={{ game, updateBoard }}>
+    <GameContext.Provider value={{ game, updateBoard, resetBoard }}>
       {props.children}
     </GameContext.Provider>
   );
