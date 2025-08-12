@@ -6,14 +6,21 @@ import { RxCross1 } from "react-icons/rx";
 import { RiCircleLine } from "react-icons/ri";
 import { ModalContext } from "../../contexts/ModalContext";
 import RoundOverModal from "../Modal/RoundOverModal/RoundOverModal";
+import { checkForWinner } from "../../utils/GameUtils";
 
 const GameCell = ({ cellItem, index }) => {
-  const { updateBoard, game } = useContext(GameContext);
+  const { updateBoard, game, roundComplete } = useContext(GameContext);
   const { handleModal } = useContext(ModalContext);
 
   const cellClickHandler = () => {
-    updateBoard(index, () => handleModal(<RoundOverModal />));
-  };
+    updateBoard(index);
+    const result = checkForWinner(game.board)
+    if(result){
+      roundComplete()
+      handleModal(<RoundOverModal />)
+    // updateBoard(index, () => handleModal(<RoundOverModal />));
+  }
+};
 
   if (cellItem === "x") {
     return (

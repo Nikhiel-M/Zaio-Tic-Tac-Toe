@@ -6,18 +6,18 @@ import { GameContext } from "../../../contexts/GameContext";
 import { ModalContext }from "../../../contexts/ModalContext"
 
 const RoundOverModal = () => {
-  const { resetBoard } = useContext(GameContext)
+  const { resetBoard, game } = useContext(GameContext)
   const {handleModal } = useContext(ModalContext);
   return (
     <>
       <ModalHeader>
         {" "}
-        <Title primary >NYX wins this round</Title>
+        <Title $primary >{game.player1.choice === game.turn ? game.player1.name : game.player2.name} wins this round</Title>
       </ModalHeader>
       <ModalBody>
-        <Subtitle primary >NYX won this round! Choices will now be switched</Subtitle>
-        <Subtitle primary >NYX: 1</Subtitle>
-        <Subtitle primary >MKZ: 1</Subtitle>
+        <Subtitle $primary >Choices will now be switched</Subtitle>
+        <Subtitle $primary >{game.player1.name}: {game.player1.score} </Subtitle>
+        <Subtitle $primary >{game.player2.name}: {game.player2.score} </Subtitle>
       </ModalBody>
       <ModalFooter>
         <ButtonWrapper
