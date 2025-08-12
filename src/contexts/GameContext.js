@@ -9,7 +9,7 @@ export const GameContextProvider = (props) => {
     player1: { choice: "x", name: "NYX", score: 0 },
     player2: { choice: "o", name: "MKZ", score: 0 },
     turn: "x",
-    winner: null,
+    roundWinner: "",
   });
 
   const updateBoard = (index) => {
@@ -18,9 +18,9 @@ export const GameContextProvider = (props) => {
     setGame({
       ...game,
       board: updatedBoard,
-      turn: game.turn === "x" ? "o": "x"
-    })
-  }
+      turn: game.turn === "x" ? "o" : "x",
+    });
+  };
 
   const resetBoard = () => {
     setGame({
@@ -29,53 +29,70 @@ export const GameContextProvider = (props) => {
     });
   };
 
-    const roundComplete = () => {
-    if(game.turn === game.player1.choice){
-      console.log("player1 wins")
-      setGame({
-        ...game,
-        player1:{
-          ...game.player1,
-          score: game.player1.score + 1
-        }
-      })
-    }else if(game.turn === game.player2.choice){
-      console.log("player2 wins")
-            setGame({
-        ...game,
-        player2:{
-          ...game.player2,
-          score: game.player2.score + 1
-        }
-      })
-    }else{
-      console.log("Draw")
+  const toggleChoice = (choice) => (choice === "x" ? "o" : "x");
+
+  const switchTurn = () => {
+    setGame((prevGame) => ({
+      ...prevGame,
+      player1: {
+        ...prevGame.player1,
+        choice: toggleChoice(prevGame.player1.choice),
+      },
+      player2: {
+        ...prevGame.player2,
+        choice: toggleChoice(prevGame.player2.choice),
+      },
+      turn: "x"
+    }));
+  };
+
+  const updateScore = (winner) => {
+    setGame((prevGame) => ({
+      ...prevGame,
+      [winner]: {
+        ...prevGame[winner],
+        score: prevGame[winner].score + 1,
+      },
+      roundWinner: prevGame[winner]
+    }));
+  };
+
+  const roundComplete = () => {
+    if (game.turn === game.player1.choice) {
+      updateScore("player1");
+    } else if (game.turn === game.player2.choice) {
+      updateScore("player2");
+    } else {
+      console.log("Draw");
     }
+    switchTurn();
   };
 
   return (
-    <GameContext.Provider value={{ game, updateBoard, resetBoard, roundComplete }}>
+    <GameContext.Provider
+      value={{ game, updateBoard, resetBoard, roundComplete }}
+    >
       {props.children}
     </GameContext.Provider>
   );
 };
 
-  // const updateBoard = (index, handleModal) => {
-  //   let updatedBoard = [...game.board];
-  //   updatedBoard[index] = game.turn;
-  //   const winner = checkForWinner(updatedBoard);
-  //   if (winner) {
-  //     setGame({
-  //       ...game,
-  //       board: updatedBoard,
-  //       turn: game.turn === "x" ? "o" : "x",
-  //     });
-  //     if (handleModal) handleModal();
-  //   } else {
-  //     setGame({
-  //       ...game,
-  //       board: updatedBoard,
-  //       turn: game.turn === "x" ? "o" : "x",
-  //     });
-  //   }
-  // };
+// const updateBoard = (index, handleModal) => {
+//   let updatedBoard = [...game.board];
+//   updatedBoard[index] = game.turn;
+//   const winner = checkForWinner(updatedBoard);
+//   if (winner) {
+//     setGame({
+//       ...game,
+//       board: updatedBoard,
+//       turn: game.turn === "x" ? "o" : "x",
+//     });
+//     if (handleModal) handleModal();
+//   } else {
+//     setGame({
+//       ...game,
+//       board: updatedBoard,
+//       turn: game.turn === "x" ? "o" : "x",
+//     });
+//   }
+// };

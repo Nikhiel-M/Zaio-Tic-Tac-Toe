@@ -12,7 +12,7 @@ const RoundOverModal = () => {
     <>
       <ModalHeader>
         {" "}
-        <Title $primary >{game.player1.choice === game.turn ? game.player1.name : game.player2.name} wins this round</Title>
+        <Title $primary > {game.roundWinner.name} wins this round</Title>
       </ModalHeader>
       <ModalBody>
         <Subtitle $primary >Choices will now be switched</Subtitle>
