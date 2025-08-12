@@ -1,9 +1,9 @@
 import React from 'react'
 import { PlayerWrapper } from './Player.styled'
 
-const Player = ({player}) => {
+const Player = ({player, isPlayerActive}) => {
   return (
-    <PlayerWrapper>
+    <PlayerWrapper isPlayerActive={isPlayerActive ?? false}>
     <div>{player.name} ({player.choice}) </div>
     <div>{player.score}</div>
   </PlayerWrapper>
