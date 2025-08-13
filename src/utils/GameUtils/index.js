@@ -1,4 +1,7 @@
 const checkForSequence = (option1, option2, option3) => {
+  if(option1 == null || option2 == null || option3 == null) {
+    return false
+  }
   return option1 === option2 && option2 === option3;
 };
 
@@ -20,12 +23,19 @@ export const checkForWinner = (board) => {
     }
   }
   // diagonals
-  if (board[0] === board[4] && board[4] === board[8]) {
-    console.log("Diagonal winner");
+  if(checkForSequence(board[0], board[4], board[8])){
+        console.log("Diagonal winner");
     return true;
   }
-  if (board[2] === board[4] && board[4] === board[6]) {
-    console.log("Diagonal winner");
+
+    if(checkForSequence(board[2], board[4], board[6])){
+        console.log("Diagonal winner");
     return true;
+  }
+
+  // check for draw
+  if(!board.includes(null)){
+    console.log("draw")
+    return "draw"
   }
 };

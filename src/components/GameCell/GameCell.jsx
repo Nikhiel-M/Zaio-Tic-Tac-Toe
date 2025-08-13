@@ -16,9 +16,8 @@ const GameCell = ({ cellItem, index }) => {
     updateBoard(index);
     const result = checkForWinner(game.board)
     if(result){
-      roundComplete()
+      roundComplete(result)
       handleModal(<RoundOverModal />)
-    // updateBoard(index, () => handleModal(<RoundOverModal />));
   }
 };
 
