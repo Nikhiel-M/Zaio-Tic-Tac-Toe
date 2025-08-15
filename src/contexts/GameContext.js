@@ -1,12 +1,14 @@
 import { createContext, useState } from "react";
+import { genConfig } from 'react-nice-avatar'
+
 
 export const GameContext = createContext({});
 
 export const GameContextProvider = (props) => {
   const [game, setGame] = useState({
     board: [null, null, null, null, null, null, null, null, null],
-    player1: { choice: "x", name: "NYX", score: 0 },
-    player2: { choice: "o", name: "MKZ", score: 0 },
+    player1: { choice: "x", name: "NYX", score: 0, color: "#8437f9", avatarConfig: genConfig() },
+    player2: { choice: "o", name: "MKZ", score: 0, color: "#f9c811", avatarConfig: genConfig() },
     turn: "x",
     roundWinner: "",
   });

@@ -36,5 +36,15 @@ export const CellStyle = styled.button`
   }
   }
 
+${(props) => props.theme.media.mobile} {
+  font-size: 1rem;
+  padding: 0;
+
+   svg {
+    font-size: 5rem;
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+}
 `;
 
