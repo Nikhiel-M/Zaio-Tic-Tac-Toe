@@ -7,10 +7,6 @@ export const ModalContext = createContext({})
 export const ModalContextProvider = ({ children }) => {
     const {modal, modalContent, handleModal} = useModal()
     
-    // const  toggleTheme = () => {
-    //     setTheme(theme === "light" ? "dark" : "light")
-    // }
-    
     return (
     <ModalContext.Provider value={{modal, modalContent, handleModal}}>
         <ModalTemplate />

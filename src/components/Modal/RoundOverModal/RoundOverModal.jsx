@@ -4,8 +4,10 @@ import { ModalHeader, ModalBody, ModalFooter } from "../Modal.styled";
 import { ButtonWrapper } from "../../Button/Button.styled";
 import { GameContext } from "../../../contexts/GameContext";
 import { ModalContext }from "../../../contexts/ModalContext"
+import { SfxContext } from "../../../contexts/SfxContext";
 
 const RoundOverModal = () => {
+  const { hoverSfx } = useContext(SfxContext)
   const { resetBoard, game } = useContext(GameContext)
   const {handleModal } = useContext(ModalContext);
   return (
@@ -17,7 +19,7 @@ const RoundOverModal = () => {
       <ModalBody>
         <Subtitle $primary >Choices will now be switched</Subtitle>
         <Subtitle $primary >{game.player1.name}: {game.player1.score} </Subtitle>
-        <Subtitle $primary >{game.player2.name}: {game.player2.score} </Subtitle>
+        <Subtitle $primary  >{game.player2.name}: {game.player2.score} </Subtitle>
       </ModalBody>
       <ModalFooter>
         <ButtonWrapper
@@ -26,10 +28,11 @@ const RoundOverModal = () => {
             handleModal();
             resetBoard()
           }}
+          onMouseEnter={() => hoverSfx()}
         >
           Continue
         </ButtonWrapper>
-        <ButtonWrapper color="#8437f9">Restart</ButtonWrapper>
+        <ButtonWrapper color="#8437f9" onMouseEnter={() => hoverSfx()}>Restart</ButtonWrapper>
       </ModalFooter>
     </>
   );
