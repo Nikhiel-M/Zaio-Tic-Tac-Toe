@@ -10,16 +10,18 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(randomizeIndex(playList));
   const [playPromise, setPlayPromise] = useState(null);
+  const [volume] = useState(0.2)
   const playerRef = useRef(null);
+
 
   useEffect(() => {
     if (isPlaying) {
-      const promise = playerRef.current.play();
+      const promise = playerRef.current.play() ;
       setPlayPromise(promise);
       return;
     }
     playerRef.current.pause();
-  }, [isPlaying]);
+  }, [isPlaying, currentSong]);
 
   const shuffleHandler = async () => {
     await playPromise.then(() => {
@@ -29,6 +31,12 @@ const MusicPlayer = () => {
     setCurrentSong(randomizeIndex(playList));
     setIsPlaying(true);
   };
+
+  useEffect(() => {
+  if (playerRef.current) {
+    playerRef.current.volume = volume;
+  }
+}, [volume, currentSong]);
 
   return (
     <MusicPlayerWrapper>
