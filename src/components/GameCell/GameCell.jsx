@@ -9,7 +9,7 @@ import RoundOverModal from "../Modal/RoundOverModal/RoundOverModal";
 import { checkForWinner } from "../../utils/GameUtils";
 import { SfxContext } from "../../contexts/SfxContext";
 
-const GameCell = ({ cellItem, index }) => {
+const GameCell = ({ cellItem, index, isWinningCell }) => {
   const { hoverSfx, clickSfx, winSfx, drawSfx } = useContext(SfxContext);
   const { updateBoard, game, roundComplete } = useContext(GameContext);
   const { handleModal } = useContext(ModalContext);
@@ -23,19 +23,21 @@ const GameCell = ({ cellItem, index }) => {
       if (result !== "draw"){
         winSfx()
       }else{drawSfx()}
-      handleModal(<RoundOverModal />);
+      setTimeout(() => {
+        handleModal(<RoundOverModal />);
+      },800)
     }
   };
 
   if (cellItem === "x") {
     return (
-      <CellStyle>
+      <CellStyle isWinningCell={isWinningCell ?? false}>
         <ImCross />
       </CellStyle>
     );
   } else if (cellItem === "o") {
     return (
-      <CellStyle>
+      <CellStyle isWinningCell={isWinningCell ?? false}>
         <RiCircleLine className="CircleIcon" />
       </CellStyle>
     );
