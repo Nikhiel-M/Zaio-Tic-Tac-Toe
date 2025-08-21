@@ -5,7 +5,7 @@ export const SfxContext = createContext({});
 
 export const SfxContextProvider = ({ children }) => {
   const options = { 
-    volume: 0.5,
+    volume: 0.1,
     // timeout: 200
    };
 
@@ -14,7 +14,7 @@ export const SfxContextProvider = ({ children }) => {
   const winPath = require("../assets/Audio/mixkit-small-win.wav")
   const drawPath = require("../assets/Audio/round-draw.wav")
 
-  const hoverSfx = useSound(hoverPath, options);
+  const hoverSfx = useSound(hoverPath, options );
   const clickSfx = useSound(clickPath, options);
   const winSfx = useSound(winPath, options);
   const drawSfx = useSound(drawPath, options);
