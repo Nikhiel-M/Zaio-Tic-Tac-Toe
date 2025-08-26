@@ -15,7 +15,7 @@ function Home() {
       <Button
         onClick={() => {
           clickSfx();
-          navigate("/game-on");
+          navigate("/details");
         }}
         onMouseEnter={() => hoverSfx()}
       >

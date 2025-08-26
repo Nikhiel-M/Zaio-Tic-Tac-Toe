@@ -6,6 +6,9 @@ export const DetailsContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin: 0 1rem 2rem 1rem;
+
+  .button {
+}
 `;
 
 export const NameInput = styled.input`
@@ -29,7 +32,6 @@ export const AvatarsDisplay = styled.div`
 
 
 export const AvatarsContainer = styled.div`
-  cursor: pointer;
   width: 8rem;
   height: 8rem;
   display: flex;
@@ -42,6 +44,7 @@ export const StyledAvatar = styled.div`
   height: 100%;
 
   .avatars {
+    cursor: pointer;
     width: 100%;
     height: 100%;
   }

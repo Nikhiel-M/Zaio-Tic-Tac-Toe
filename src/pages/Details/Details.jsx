@@ -1,70 +1,6 @@
-// import { useContext, useState } from "react";
-// import { Title } from "../../styles/General.styled";
-// import {
-//   DetailsContainer,
-//   NameInput,
-//   AvatarsDisplay,
-//   AvatarsContainer,
-// } from "./Details.styled.js";
-// import { PlayerWrapper } from "../../components/Player/Player.styled.js";
-// import Avatar, { genConfig } from "react-nice-avatar";
-// import { GameContext } from "../../contexts/GameContext.js";
-
-// const Details = () => {
-//   const [selectedAvatar, setSelectedAvatar] = useState(null);
-//   const { setPlayerAvatar } = useContext(GameContext);
-
-//   const avatarHandler = (player, avatarConfig) => {
-//     setSelectedAvatar(avatarConfig);
-//     setPlayerAvatar(player, avatarConfig);
-//   };
-
-//   return (
-//     <DetailsContainer>
-//       <PlayerWrapper>
-//         <Title>Player 1</Title>
-//         <NameInput type="text" placeholder="Name Here..." />
-//         <Title>Avatars</Title>
-//         <AvatarsDisplay>
-//           {Array.from({ length: 6 }).map((_, i) => {
-//             const config = genConfig();
-//             return (
-//               <AvatarsContainer
-//                 key={i}
-//                 onClick={() => avatarHandler("player1", config)}
-//               >
-//                 <Avatar {...config} />
-//               </AvatarsContainer>
-//             );
-//           })}
-//         </AvatarsDisplay>
-//       </PlayerWrapper>
-
-//       <PlayerWrapper>
-//         <Title>Player 2</Title>
-//         <NameInput type="text" placeholder="Name Here..." />
-//         <Title>Avatars</Title>
-//         <AvatarsDisplay>
-//           {Array.from({ length: 6 }).map((_, i) => {
-//             const config = genConfig();
-//             return (
-//               <AvatarsContainer
-//                 key={i}
-//                 onClick={() => avatarHandler("player2", config)}
-//               >
-//                 <Avatar {...config} />
-//               </AvatarsContainer>
-//             );
-//           })}
-//         </AvatarsDisplay>
-//       </PlayerWrapper>
-//     </DetailsContainer>
-//   );
-// };
-
-// export default Details;
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
 import { Title } from "../../styles/General.styled";
 import {
   DetailsContainer,
@@ -78,7 +14,15 @@ import Avatar, { genConfig } from "react-nice-avatar";
 import { GameContext } from "../../contexts/GameContext.js";
 
 const PlayerDetails = ({ player }) => {
-  const { setPlayerAvatar } = useContext(GameContext);
+  const { setPlayerAvatar, updatePlayerName, game } = useContext(GameContext);
+
+  const nameHandler = (e) => {
+    updatePlayerName(player, e.target.value);
+  };
+
+  const [avatarConfigs] = useState(() =>
+    Array.from({ length: 6 }, () => genConfig())
+  );
 
   const avatarHandler = (avatarConfig) => {
     setPlayerAvatar(player, avatarConfig);
@@ -86,32 +30,38 @@ const PlayerDetails = ({ player }) => {
 
   return (
     <PlayerWrapper>
-      <Title>{player}</Title>
-      <NameInput type="text" placeholder="Name Here..." />
+      <Title>{player === "player1" ? "Player 1" : "Player 2"}</Title>
+      <NameInput
+        type="text"
+        placeholder="Name Here..."
+        value={game[player].name}
+        onChange={nameHandler}
+      />
       <Title>Avatars</Title>
       <AvatarsDisplay>
-        {Array.from({ length: 6 }).map((_, i) => {
-          const config = genConfig();
-          return (
-            <AvatarsContainer key={i} onClick={() => avatarHandler(config)}>
-              <StyledAvatar>
-                <Avatar className="avatars" {...config} />
-              </StyledAvatar>
-            </AvatarsContainer>
-          );
-        })}
+        {avatarConfigs.map((config, i) => (
+          <AvatarsContainer key={i} onClick={() => avatarHandler(config)}>
+            <StyledAvatar>
+              <Avatar className="avatars" {...config} />
+            </StyledAvatar>
+          </AvatarsContainer>
+        ))}
       </AvatarsDisplay>
     </PlayerWrapper>
   );
 };
 
 const Details = () => {
+  const navigate = useNavigate();
   return (
     <DetailsContainer>
-      <PlayerDetails player="Player 1" />
-      <PlayerDetails player="Player 2" />
+      <PlayerDetails player="player1" />
+      <Button className="Button" onClick={() => { navigate("/game-on"); }}> Play Game </Button>
+      <PlayerDetails player="player2" />
     </DetailsContainer>
   );
 };
 
 export default Details;
+
+

@@ -4,9 +4,11 @@ import { DarkModeIcon, HeaderWrapper, LightModeIcon } from "./Header.styled";
 import { ReactComponent as Logo } from "../../assets/svgs/tic-tac-toe-svgrepo-com.svg";
 import { useNavigate } from "react-router-dom";
 import { SfxContext } from "../../contexts/SfxContext";
+import { GameContext } from "../../contexts/GameContext";
 
 const Header = () => {
   const navigate = useNavigate();
+  const { restartGame,  } = useContext(GameContext);
   const { hoverSfx, clickSfx } = useContext(SfxContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
@@ -15,6 +17,7 @@ const Header = () => {
         className="logo"
         onClick={() => {
           clickSfx();
+          restartGame();
           navigate("/");
         }}
         onMouseEnter={() => hoverSfx()}

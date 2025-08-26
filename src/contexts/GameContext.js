@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { genConfig } from "react-nice-avatar";
+// import { genConfig } from "react-nice-avatar";
 
 export const GameContext = createContext({});
 
@@ -52,14 +52,14 @@ export const GameContextProvider = (props) => {
         name: "Player1",
         score: 0,
         color: "#8437f9",
-        avatarConfig: genConfig(),
+        // avatarConfig: genConfig(),
       },
       player2: {
         choice: "o",
         name: "Player2",
         score: 0,
         color: "#f9c811",
-        avatarConfig: genConfig(),
+        // avatarConfig: genConfig(),
       },
       turn: "x",
       roundWinner: "",
@@ -134,9 +134,19 @@ export const GameContextProvider = (props) => {
     }));
   };
 
+  const updatePlayerName = (player, name) => {
+  setGame((prev) => ({
+    ...prev,
+    [player]: {
+      ...prev[player],
+      name,
+    },
+  }));
+};
+
   return (
     <GameContext.Provider
-      value={{ game, updateBoard, resetBoard, roundComplete, restartGame, setPlayerAvatar }}
+      value={{ game, updateBoard, resetBoard, roundComplete, restartGame, setPlayerAvatar, updatePlayerName }}
     >
       {props.children}
     </GameContext.Provider>
