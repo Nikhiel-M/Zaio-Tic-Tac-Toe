@@ -25,7 +25,7 @@ const GameCell = ({ cellItem, index, isWinningCell }) => {
       }else{drawSfx()}
       setTimeout(() => {
         handleModal(<RoundOverModal />);
-      },800)
+      },400)
     }
   };
 

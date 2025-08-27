@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { Title } from "../../styles/General.styled";
 import {
+  PlayersWrapper,
   DetailsContainer,
   NameInput,
   AvatarsDisplay,
@@ -10,7 +11,6 @@ import {
   StyledAvatar,
   PlayerChoice,
 } from "./Details.styled.js";
-import { PlayerWrapper } from "../../components/Player/Player.styled.js";
 import Avatar, { genConfig } from "react-nice-avatar";
 import { GameContext } from "../../contexts/GameContext.js";
 import { SfxContext } from "../../contexts/SfxContext.js";
@@ -31,7 +31,7 @@ const PlayerDetails = ({ player }) => {
   };
 
   return (
-    <PlayerWrapper>
+    <PlayersWrapper>
       <PlayerChoice>
         {" "}
         {game[player].avatarConfig && <Avatar className="avatars" {...game[player].avatarConfig} />}
@@ -58,7 +58,7 @@ const PlayerDetails = ({ player }) => {
           </AvatarsContainer>
         ))}
       </AvatarsDisplay>
-    </PlayerWrapper>
+    </PlayersWrapper>
   );
 };
 
