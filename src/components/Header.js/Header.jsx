@@ -9,7 +9,7 @@ import { GameContext } from "../../contexts/GameContext";
 const Header = () => {
   const navigate = useNavigate();
   const { restartGame,  } = useContext(GameContext);
-  const { hoverSfx, clickSfx } = useContext(SfxContext);
+  const { clickSfx } = useContext(SfxContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <HeaderWrapper>
