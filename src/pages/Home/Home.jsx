@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Title, Subtitle, Container } from "../../styles/General.styled";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { SfxContext } from "../../contexts/SfxContext";
 
 function Home() {
   const navigate = useNavigate();
-  const { hoverSfx, clickSfx } = useContext(SfxContext);
+  const {  clickSfx } = useContext(SfxContext);
 
   return (
     <Container $columnBased>
@@ -17,7 +17,7 @@ function Home() {
           clickSfx();
           navigate("/details");
         }}
-        onMouseEnter={() => hoverSfx()}
+        // onMouseEnter={() => hoverSfx()}
       >
         Play Now
       </Button>

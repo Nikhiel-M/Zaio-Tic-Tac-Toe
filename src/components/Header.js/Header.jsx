@@ -20,10 +20,10 @@ const Header = () => {
           restartGame();
           navigate("/");
         }}
-        onMouseEnter={() => hoverSfx()}
+        // onMouseEnter={() => hoverSfx()}
       />
       <span
-        onMouseEnter={() => hoverSfx()}
+        // onMouseEnter={() => hoverSfx()}
         onClick={() => {
           toggleTheme();
           clickSfx();

@@ -1,13 +1,15 @@
-import MoriCalliope from "./MVSeeing Stars feat. Lotus Juice - Mori Calliope.mp3";
-import ByeByeYesterday from "./Bye bye YESTERDAY.mp3";
-import RaiseYourFlag from "./Raise your flag.mp3";
-import UmaPyon from "./うまぴょい伝説.mp3";
+import SpringVibes from "../MusicUtils/spring-lofi-vibes-lofi-music-340019.mp3"
+import RainyCity from "../MusicUtils/rainy-lofi-city-lofi-music-332746.mp3"
+import GoodNight from "../MusicUtils/good-night-lofi-cozy-chill-music-160166.mp3"
+import JazzyGuitarist from "../MusicUtils/free-soul-slow-relaxed-raw-jazzy-guitarist-382016.mp3"
 
 const playList = [
-  { name: "Bye bye YESTERDAY.mp3", src: ByeByeYesterday },
-  { name: "MVSeeing Stars feat. Lotus Juice - Mori Calliope.mp3", src: MoriCalliope },
-  { name: "Raise Your Flag.mp3", src:RaiseYourFlag },
-  { name: "UmaPyonうまぴょい伝説.mp3", src: UmaPyon},
+
+    { name: "Soul Slow Relaxed Raw Jazzy Guitarist", src: JazzyGuitarist},
+  { name: "Good Night - Lofi Cozy Chill Music", src: GoodNight},
+  { name: "Rainy Lofi City ", src: RainyCity},
+  { name: "Spring Lofi Vibes", src: SpringVibes},
+
 ];
 
 export default playList;

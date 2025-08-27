@@ -10,7 +10,8 @@ export const SfxContextProvider = ({ children }) => {
    };
 
   const hoverPath = require("../assets/Audio/computer-mouse-click.mp3");
-  const clickPath = require("../assets/Audio/90s-game-ui.mp3");
+  // const clickPath = require("../assets/Audio/90s-game-ui.mp3");
+  const clickPath = require("../assets/Audio/button-4.mp3");
   const winPath = require("../assets/Audio/mixkit-small-win.wav")
   const drawPath = require("../assets/Audio/round-draw.wav")
 
